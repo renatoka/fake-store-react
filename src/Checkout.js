@@ -1,11 +1,11 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import axios from 'axios';
 
 import { cartItems, cartTotalAmount } from './Main';
 
-export default function Checkout() {
+export default function Checkout(props) {
 
     //   "email": "john@mail.com",
     //   "password": "changeme"
@@ -15,7 +15,10 @@ export default function Checkout() {
     const emailAddress = useRef();
     const userPassword = useRef();
 
-    const handleSubmit = () => {
+    const [error, setError] = useState(false);
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
         const email = emailAddress.current.value;
         const password = userPassword.current.value;
         axios({
@@ -32,7 +35,8 @@ export default function Checkout() {
             }
             )
             .catch((error) => {
-                console.log(error);
+                console.log(error.response.data.statusCode);
+                setError(true);
             }
             )
     }
@@ -60,6 +64,7 @@ export default function Checkout() {
                             <input aria-label="emailAddress"
                                 className="border-b-2 border-gray-300 pb-3 text-base text-gray-600 font-normal placeholder-gray-600 focus:outline-none"
                                 type="email" name="email" id="email" placeholder="Email address" ref={emailAddress} />
+
                             <input aria-label="password"
                                 className="border-b-2 border-gray-300 pb-3 text-base text-gray-600 font-normal placeholder-gray-600 focus:outline-none"
                                 type="password" name="password" id="password" placeholder="Password" ref={userPassword} />
@@ -67,7 +72,9 @@ export default function Checkout() {
                         </div>
                     </form>
                 </div>
-
+                {
+                    error && <p className="text-red-500 text-sm mt-2">Invalid email or password</p>
+                }
                 <button
                     className="bg-gray-800 hover:bg-gray-900 text-white p-4 text-lg my-3 mt-10 w-full md:w-auto" onClick={handleSubmit}>Pay now
                 </button>
