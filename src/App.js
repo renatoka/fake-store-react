@@ -11,6 +11,7 @@ function App() {
     const [cartQuantity, setCartQuantity] = useState(1)
     const [loading, setLoading] = useState(true)
     const [cart, setCart] = useState([])
+    let [cartTotal, setCartTotal] = useState(0)
 
     const updateCart = () => {
         // updates cart item number in header icon
@@ -19,19 +20,30 @@ function App() {
 
     const addToCart = (products) => {
         updateCart()
-        const newCart = [...cart]
-        // check if item is already in cart and updates quantity, if not add it to cart as new item
-        const itemInCart = newCart.find(item => item.id === products.id)
-        if (itemInCart) {
-            itemInCart.quantity++
-        } else {
-            newCart.push({...products, quantity: 1})
-            setCart(newCart)
-        }
-        console.log('Cart Quantity: ', cartQuantity)
-        console.log('Cart: ', newCart)
-    }
+        let newCart = [...cart]
+        let itemInCart = newCart.find(item => item.id === products.id)
 
+        // if item is already in cart, increase quantity
+        if (itemInCart) {
+            itemInCart.quantity += 1
+            cartTotal += itemInCart.price
+            setCartTotal(cartTotal)
+            // add item's price to cart total
+
+            // if item is not in cart, add it
+        } else {
+            // add item's price to cart total
+            products.quantity = 1
+            cartTotal += products.price
+            newCart.push(products)
+
+            setCart(newCart)
+            setCartTotal(cartTotal)
+        }
+        console.log('Cart quantity: ', cartQuantity)
+        console.log('New cart: ', newCart)
+        console.log('Cart total: ', cartTotal)
+    }
 
     useEffect(() => {
         axios({
@@ -111,40 +123,25 @@ function App() {
             <div className="container mx-auto flex items-center flex-wrap pt-4 pb-12">
                 <nav id="store" className="w-full z-30 top-0 px-6 py-1">
                     <div
-                        className="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 px-2 py-3">
-                        <p className="uppercase tracking-wide no-underline hover:no-underline font-bold text-gray-800 text-xl ">Store</p>
-                        <div className="flex items-center" id="store-nav-content">
-                            <p className="pl-3 inline-block no-underline hover:text-black">
-                                <svg className="fill-current hover:text-black" xmlns="http://www.w3.org/2000/svg"
-                                     width="24" height="24" viewBox="0 0 24 24">
-                                    <path d="M7 11H17V13H7zM4 7H20V9H4zM10 15H14V17H10z"></path>
-                                </svg>
-                            </p>
-                            <p className="pl-3 inline-block no-underline hover:text-black">
-                                <svg className="fill-current hover:text-black" xmlns="http://www.w3.org/2000/svg"
-                                     width="24" height="24" viewBox="0 0 24 24">
-                                    <path
-                                        d="M10,18c1.846,0,3.543-0.635,4.897-1.688l4.396,4.396l1.414-1.414l-4.396-4.396C17.365,13.543,18,11.846,18,10 c0-4.411-3.589-8-8-8s-8,3.589-8,8S5.589,18,10,18z M10,4c3.309,0,6,2.691,6,6s-2.691,6-6,6s-6-2.691-6-6S6.691,4,10,4z"></path>
-                                </svg>
-                            </p>
-
-                        </div>
+                        className="w-full container mx-auto mt-0 px-2 py-3">
+                        <p className="uppercase tracking-wide text-left no-underline hover:no-underline font-bold text-gray-800 text-xl ">Store</p>
                     </div>
                 </nav>
-                {products.slice(0, 40).map(({category, description, id, price, title}) => {
-                    return (<div className="w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col" key={id}>
+                {products.slice(0, 40).map((product, index) => {
+                    return (<div className="w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col" key={index}>
                         <div>
-                            <img className="hover:grow hover:shadow-lg" src={category.image}
-                                 alt={description}/>
+                            <img className="hover:grow hover:shadow-lg" src={product.images}
+                                 alt={product.description}/>
                             <div className="pt-3 flex items-center justify-between">
-                                <p className="uppercase font-bold text-lg">{title}</p>
-                                <img src={plus} width='20px' onClick={() => addToCart(products[id - 1])}
-                                     alt={description}/>
+                                <p className="uppercase font-bold text-lg">{product.title}</p>
+                                <img src={plus} width='20px' onClick={() => addToCart(products[index])}
+                                     alt={product.description}/>
                             </div>
-                            <p className="pt-1 text-left text-gray-900">{price} €</p>
+                            <p className="pt-1 text-left text-gray-900">{products[index].price} €</p>
                         </div>
                     </div>)
                 })}
+                }
             </div>
         </div>
     </div>);
