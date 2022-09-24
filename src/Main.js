@@ -6,9 +6,9 @@ import plus from './images/plus.svg'
 
 import './App.css';
 import './Hero.css';
-import Checkout from "./Checkout";
 
 export let cartQuantityCheckout;
+export let cartItems = [];
 
 export default function Main() {
 
@@ -50,6 +50,7 @@ export default function Main() {
             setCartTotal(cartTotal)
         }
         cartQuantityCheckout = cartQuantity
+        cartItems = cart
         console.log('Cart quantity: ', cartQuantity)
         console.log('New cart: ', newCart)
         console.log('Cart total: ', cartTotal)
