@@ -29,8 +29,7 @@ export default function Checkout() {
                 password: pass
             }
         })
-            .then((response) => {
-                console.log(response);
+            .then(() => {
                 navigate('/order-summary')
             }
             )
