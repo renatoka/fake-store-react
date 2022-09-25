@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/renatoka/fake-store-react/gh-pages/static/css/main.23ae64ef.css",
-    "main.js": "/renatoka/fake-store-react/gh-pages/static/js/main.f7754b8f.js",
-    "static/js/787.855d4501.chunk.js": "/renatoka/fake-store-react/gh-pages/static/js/787.855d4501.chunk.js",
-    "index.html": "/renatoka/fake-store-react/gh-pages/index.html",
-    "static/media/plus.svg": "/renatoka/fake-store-react/gh-pages/static/media/plus.e5cd68e58ecd486bb4c60a74e3f45dce.svg",
-    "main.23ae64ef.css.map": "/renatoka/fake-store-react/gh-pages/static/css/main.23ae64ef.css.map",
-    "main.f7754b8f.js.map": "/renatoka/fake-store-react/gh-pages/static/js/main.f7754b8f.js.map",
-    "787.855d4501.chunk.js.map": "/renatoka/fake-store-react/gh-pages/static/js/787.855d4501.chunk.js.map"
+    "main.css": "/renatoka/fake-store-react/static/css/main.23ae64ef.css",
+    "main.js": "/renatoka/fake-store-react/static/js/main.a0a7fb16.js",
+    "static/js/787.855d4501.chunk.js": "/renatoka/fake-store-react/static/js/787.855d4501.chunk.js",
+    "index.html": "/renatoka/fake-store-react/index.html",
+    "static/media/plus.svg": "/renatoka/fake-store-react/static/media/plus.e5cd68e58ecd486bb4c60a74e3f45dce.svg",
+    "main.23ae64ef.css.map": "/renatoka/fake-store-react/static/css/main.23ae64ef.css.map",
+    "main.a0a7fb16.js.map": "/renatoka/fake-store-react/static/js/main.a0a7fb16.js.map",
+    "787.855d4501.chunk.js.map": "/renatoka/fake-store-react/static/js/787.855d4501.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.23ae64ef.css",
-    "static/js/main.f7754b8f.js"
+    "static/js/main.a0a7fb16.js"
   ]
 }
