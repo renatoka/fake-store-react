@@ -1,14 +1,29 @@
-import React from 'react'
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-
 import { cartItems, cartTotalAmount } from './Main';
 
 export default function OrderSummary() {
 
   const navigate = useNavigate();
+  const [todaysDate, setTodaysDate] = useState('');
+  const discountValue = useRef();
 
-  const [todaysDate, setTodaysDate] = useState('')
+  const [discountMessage, setDiscountMessage] = useState('');
+  const [discountApplied, setDiscountApplied] = useState(false);
+  const [discountName, setDiscountName] = useState('');
+
+  const handleDiscount = (e) => {
+    e.preventDefault()
+    if (discountValue.current.value.toLowerCase() == 'student') {
+      setDiscountMessage('Discount applied.')
+      setDiscountApplied(true);
+      setDiscountName(discountValue.current.value)
+
+    } else {
+      setDiscountMessage('Invalid discount code. Please try again.')
+      setDiscountApplied(false);
+    }
+  }
 
   const getTodaysDate = () => {
     const date = new Date();
@@ -16,9 +31,7 @@ export default function OrderSummary() {
     const month = date.getMonth() + 1;
     const year = date.getFullYear();
     const todaysDate = `Date: ${day}/${month}/${year}`;
-
     setTodaysDate(todaysDate)
-    console.log(cartItems)
   }
 
   useEffect(() => {
@@ -30,7 +43,7 @@ export default function OrderSummary() {
       <div className="flex justify-start item-start space-y-2 flex-col ">
         <h1 className="text-3xl lg:text-4xl font-semibold leading-7 lg:leading-9  text-gray-800">Order #13432</h1>
         <p className="text-base font-medium leading-6 text-gray-600">{todaysDate}</p>
-        <p className="text-base font-medium leading-6 text-gray-600" onClick={() => navigate('/checkout')}>Go Back</p>
+        <p className="text-base font-medium leading-6 text-gray-600" onClick={() => navigate('/')}>Go Back</p>
       </div>
       <div className="mt-10 flex flex-col xl:flex-row jusitfy-center items-stretch  w-full xl:space-x-8 space-y-4 md:space-y-6 xl:space-y-0">
         <div className="flex flex-col justify-start items-start w-full space-y-4 md:space-y-6 xl:space-y-8">
@@ -68,14 +81,22 @@ export default function OrderSummary() {
               <div className="flex justify-center items-center w-full space-y-4 flex-col border-gray-200 border-b pb-4">
                 <div className="flex justify-between  w-full">
                   <p className="text-base leading-4 text-gray-800">Subtotal</p>
-                  <p className="text-base leading-4 text-gray-600">€ {cartTotalAmount}</p>
+                  <p className="text-base leading-4 text-gray-600">€ {cartTotalAmount.toFixed(2)}</p>
                 </div>
-                <div className="flex justify-between items-center w-full">
-                  <p className="text-base leading-4 text-gray-800">
-                    Discount <span className="bg-gray-200 p-1 text-xs font-medium leading-3  text-gray-800">STUDENT</span>
-                  </p>
-                  <p className="text-base leading-4 text-gray-600">€ {(cartTotalAmount / 5).toFixed(2)} (20%)</p>
-                </div>
+                {
+                  <>
+                    {
+                      discountApplied ? (
+                        <div className="flex justify-between items-center w-full">
+                          <p className="text-base leading-4 text-gray-800">Discount <span className="bg-gray-200 p-1 text-xs font-medium leading-3 text-gray-800">{discountName.toUpperCase()}</span></p>
+                          <p className="text-base leading-4 text-gray-600"><span className="text-green-500 text-xs font-medium">(15%)</span> € {(cartTotalAmount * 0.15).toFixed(2)}</p>
+                        </div>
+                      ) : (
+                        <></>
+                      )
+                    }
+                  </>
+                }
                 <div className="flex justify-between items-center w-full">
                   <p className="text-base leading-4 text-gray-800">Shipping</p>
                   <p className="text-base leading-4 text-gray-600">€ 5.00</p>
@@ -83,8 +104,24 @@ export default function OrderSummary() {
               </div>
               <div className="flex justify-between items-center w-full">
                 <p className="text-base font-semibold leading-4 text-gray-800">Total</p>
-                <p className="text-base font-semibold leading-4 text-gray-600">€ {(cartTotalAmount - (cartTotalAmount / 5).toFixed(2) - 5.00).toFixed(2)}</p>
+                {
+                  discountApplied ? (
+                    <p className="text-base font-semibold leading-4 text-gray-800">€ {(cartTotalAmount - (cartTotalAmount * 0.15) + 5).toFixed(2)}</p>
+                  ) : (
+                    <p className="text-base font-semibold leading-4 text-gray-800">€ {(cartTotalAmount + 5).toFixed(2)}</p>
+                  )
+                }
               </div>
+            </div>
+            <div className="flex flex-col justify-center px-4 py-6 md:p-6 xl:p-8 w-full bg-gray-50 space-y-6">
+              <h3 className="text-xl font-semibold leading-5 text-gray-800">Got a discount code?</h3>
+              <div className="flex justify-between items-center w-full gap-5">
+                <input type="text" className="w-full border border-gray-200 rounded-md px-4 py-2 text-base leading-4 text-gray-800" placeholder="Enter your code" ref={discountValue} />
+                <button className="bg-gray-800 text-white px-4 py-2 rounded-md text-base font-medium" onClick={handleDiscount}>Apply</button>
+              </div>
+              {
+                discountMessage && <p className="text-md font-semibold text-gray-800">{discountMessage}</p>
+              }
             </div>
             <div className="flex flex-col justify-center px-4 py-6 md:p-6 xl:p-8 w-full bg-gray-50 space-y-6">
               <h3 className="text-xl font-semibold leading-5 text-gray-800">Shipping</h3>
