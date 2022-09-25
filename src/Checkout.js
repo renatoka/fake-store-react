@@ -5,28 +5,28 @@ import axios from 'axios';
 
 import { cartItems, cartTotalAmount } from './Main';
 
-export default function Checkout(props) {
+export default function Checkout() {
 
-    //   "email": "john@mail.com",
-    //   "password": "changeme"
+    //   "username": "mor_2314",
+    //   "password": "83r5^_"
 
     const navigate = useNavigate();
 
-    const emailAddress = useRef();
-    const userPassword = useRef();
+    const username = useRef();
+    const password = useRef();
 
     const [error, setError] = useState(false);
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const email = emailAddress.current.value;
-        const password = userPassword.current.value;
+        const email = username.current.value;
+        const pass = password.current.value;
         axios({
             method: 'POST',
-            url: 'https://api.escuelajs.co/api/v1/auth/login',
+            url: 'https://fakestoreapi.com/auth/login',
             data: {
-                email: email,
-                password: password
+                username: email,
+                password: pass
             }
         })
             .then((response) => {
@@ -35,8 +35,9 @@ export default function Checkout(props) {
             }
             )
             .catch((error) => {
-                console.log(error.response.data.statusCode);
-                setError(true);
+                if (error.response) {
+                    setError(true);
+                }
             }
             )
     }
@@ -63,11 +64,24 @@ export default function Checkout(props) {
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-10">
                             <input aria-label="emailAddress"
                                 className="border-b-2 border-gray-300 pb-3 text-base text-gray-600 font-normal placeholder-gray-600 focus:outline-none"
-                                type="email" name="email" id="email" placeholder="Email address" ref={emailAddress} />
+                                type="email" placeholder="mor_2314" ref={username} />
 
                             <input aria-label="password"
                                 className="border-b-2 border-gray-300 pb-3 text-base text-gray-600 font-normal placeholder-gray-600 focus:outline-none"
-                                type="password" name="password" id="password" placeholder="Password" ref={userPassword} />
+                                type="password" placeholder="83r5^_" ref={password} />
+
+                            <input aria-label='credit-card-number'
+                                className="border-b-2 border-gray-300 pb-3 text-base text-gray-600 font-normal placeholder-gray-600 focus:outline-none"
+                                type="numeric" inputMode="numeric" pattern="[0-9]*" autoComplete="cc-number" maxLength="19" placeholder="XXXX-XXXX-XXXX-XXXX" />
+
+                            <input aria-label='credit-card-expiry'
+                                className="border-b-2 w-20 border-gray-300 pb-3 text-base text-gray-600 font-normal placeholder-gray-600 focus:outline-none"
+                                type="numeric" inputMode="numeric" pattern="[0-9\s]{13,19}" autoComplete="cc-exp" maxLength="5" placeholder="MM/YY" />
+
+                            <input aria-label='credit-card-cvv'
+                                className="border-b-2 w-20 border-gray-300 pb-3 text-base text-gray-600 font-normal placeholder-gray-600 focus:outline-none"
+                                type="numeric" inputMode="numeric" pattern="[0-9\s]{13,19}" autoComplete="cc-csc" maxLength="4" placeholder="CVV" />
+
 
                         </div>
                     </form>
@@ -104,7 +118,7 @@ export default function Checkout(props) {
                         Total
                     </span>
                     <span aria-label="Total Price" className="float-right font-semibold text-gray-800 text-2xl">
-                        ${cartTotalAmount}
+                        ${cartTotalAmount.toFixed(2)}
                     </span>
                 </div>
             </div>
