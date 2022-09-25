@@ -74,7 +74,7 @@ export default function OrderSummary() {
                   <p className="text-base leading-4 text-gray-800">
                     Discount <span className="bg-gray-200 p-1 text-xs font-medium leading-3  text-gray-800">STUDENT</span>
                   </p>
-                  <p className="text-base leading-4 text-gray-600">€ {(cartTotalAmount/5).toFixed(2)} (20%)</p>
+                  <p className="text-base leading-4 text-gray-600">€ {(cartTotalAmount / 5).toFixed(2)} (20%)</p>
                 </div>
                 <div className="flex justify-between items-center w-full">
                   <p className="text-base leading-4 text-gray-800">Shipping</p>
@@ -83,7 +83,7 @@ export default function OrderSummary() {
               </div>
               <div className="flex justify-between items-center w-full">
                 <p className="text-base font-semibold leading-4 text-gray-800">Total</p>
-                <p className="text-base font-semibold leading-4 text-gray-600">€ {(cartTotalAmount - (cartTotalAmount/5).toFixed(2) - 5.00).toFixed(2)}</p>
+                <p className="text-base font-semibold leading-4 text-gray-600">€ {(cartTotalAmount - (cartTotalAmount / 5).toFixed(2) - 5.00).toFixed(2)}</p>
               </div>
             </div>
             <div className="flex flex-col justify-center px-4 py-6 md:p-6 xl:p-8 w-full bg-gray-50 space-y-6">
@@ -126,7 +126,7 @@ export default function OrderSummary() {
                   <path d="M19 5H5C3.89543 5 3 5.89543 3 7V17C3 18.1046 3.89543 19 5 19H19C20.1046 19 21 18.1046 21 17V7C21 5.89543 20.1046 5 19 5Z" stroke="#1F2937" strokeLinecap="round" strokeLinejoin="round" />
                   <path d="M3 7L12 13L21 7" stroke="#1F2937" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
-                <p className="cursor-pointer text-sm leading-5 text-gray-800">david89@gmail.com</p>
+                <p className="cursor-pointer text-sm leading-5 text-gray-800">david@david.com</p>
               </div>
             </div>
             <div className="flex justify-between xl:h-full  items-stretch w-full flex-col mt-6 md:mt-0">
