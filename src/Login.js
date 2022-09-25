@@ -1,10 +1,10 @@
 import { useNavigate } from 'react-router-dom';
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import axios from 'axios';
 
 import { cartItems, cartTotalAmount } from './Main';
 
-export default function Checkout() {
+export default function Login() {
 
     //   "username": "mor_2314",
     //   "password": "83r5^_"
@@ -29,6 +29,7 @@ export default function Checkout() {
         })
             .then(() => {
                 navigate('/order-summary')
+                console.log('Cart Items: ', cartItems, 'Cart Total: ', cartTotalAmount);
             }
             )
             .catch((error) => {
@@ -38,6 +39,7 @@ export default function Checkout() {
             }
             )
     }
+    
     return (
         <div className="lg:container lg:mx-auto grid grid-cols-9 lg:grid-cols-12">
             <div
@@ -51,7 +53,7 @@ export default function Checkout() {
                     <span className="cursor-pointer text-gray-500 font-normal text-base ml-2.5" onClick={() => navigate('/')}>Back</span>
 
                 </p>
-                <h3 className="font-semibold text-gray-800 text-4xl mt-2">Checkout</h3>
+                <h3 className="font-semibold text-gray-800 text-4xl mt-2">Login</h3>
 
                 <div className="mt-7 lg:mt-20">
                     <p className="font-normal text-sm text-gray-600 mb-3">Your details</p>
@@ -67,28 +69,15 @@ export default function Checkout() {
                                 className="border-b-2 border-gray-300 pb-3 text-base text-gray-600 font-normal placeholder-gray-600 focus:outline-none"
                                 type="password" placeholder="Password" ref={password} />
 
-                            <input aria-label='credit-card-number'
-                                className="border-b-2 border-gray-300 pb-3 text-base text-gray-600 font-normal placeholder-gray-600 focus:outline-none"
-                                type="numeric" inputMode="numeric" pattern="[0-9]*" autoComplete="cc-number" maxLength="19" placeholder="XXXX-XXXX-XXXX-XXXX" />
-
-                            <input aria-label='credit-card-expiry'
-                                className="border-b-2 w-20 border-gray-300 pb-3 text-base text-gray-600 font-normal placeholder-gray-600 focus:outline-none"
-                                type="numeric" inputMode="numeric" pattern="[0-9\s]{13,19}" autoComplete="cc-exp" maxLength="5" placeholder="MM/YY" />
-
-                            <input aria-label='credit-card-cvv'
-                                className="border-b-2 w-20 border-gray-300 pb-3 text-base text-gray-600 font-normal placeholder-gray-600 focus:outline-none"
-                                type="numeric" inputMode="numeric" pattern="[0-9\s]{13,19}" autoComplete="cc-csc" maxLength="4" placeholder="CVV" />
-
-
                         </div>
                     </form>
                 </div>
                 {
                     error && <p className="text-red-500 text-sm mt-2">Invalid email or password</p>
                 }
-                <button className="bg-gray-800 hover:bg-gray-900 text-white p-4 text-lg my-3 mt-10 w-full md:w-auto" onClick={handleSubmit}>Pay now</button>
+                <button className="bg-gray-800 hover:bg-gray-900 text-white p-4 text-lg my-3 mt-10 w-full md:w-auto" onClick={handleSubmit}>Login</button>
             </div>
-            <div
+            {/* <div
                 className="relative col-span-9 lg:col-span-4 xl:col-span-3 bg-gray-100 lg:h-auto xl:h-screen px-8 py-14 xl:px-12 xl:py-20">
                 <div className="flex flex-1">
                     <h3 className="text-gray-800 font-semibold text-2xl">Items</h3>
@@ -116,7 +105,7 @@ export default function Checkout() {
                         ${cartTotalAmount.toFixed(2)}
                     </span>
                 </div>
-            </div>
+            </div> */}
         </div>
     );
 }
