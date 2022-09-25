@@ -1,5 +1,4 @@
 import './App.css'
-import { useState } from "react";
 import Main from "./Main";
 import Checkout from "./Checkout";
 import OrderSummary from "./OrderSummary";
