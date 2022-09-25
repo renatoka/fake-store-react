@@ -66,7 +66,7 @@ export default function Main() {
 
     useEffect(() => {
         axios({
-            method: 'GET', url: 'https://api.escuelajs.co/api/v1/products'
+            method: 'GET', url: 'https://fakestoreapi.com/products'
         }).then((response) => {
             setProducts(response.data)
             setLoading(false)
@@ -148,13 +148,13 @@ export default function Main() {
                         <p className="uppercase tracking-wide text-left no-underline hover:no-underline font-bold text-gray-800 text-xl ">Store</p>
                     </div>
                 </nav>
-                {products.slice(0, 40).map((product, index) => {
+                {products.map((product, index) => {
                     return (<div className="w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col" key={index}>
                         <div>
-                            <img className="hover:grow hover:shadow-lg" src={product.images}
-                                alt={product.description} />
+                            <img className="hover:grow hover:shadow-lg" src={product.image}
+                                alt={product.description} style={{ width: '300px', height: '300px' }} />
                             <div className="pt-3 flex items-center justify-between">
-                                <p className="uppercase font-bold text-lg">{product.title}</p>
+                                <p className="uppercase font-bold text-lg text-left">{product.title}</p>
                                 <img src={plus} width='20px' onClick={() => addToCart(products[index])}
                                     alt={product.description} />
                             </div>
