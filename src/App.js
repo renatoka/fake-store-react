@@ -7,7 +7,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 function App() {
 
     return (
-        <Router>
+        <Router basename={window.location.pathname || ''}>
             <Routes>
                 <Route path="/" element={<Main />} />
                 <Route path="/checkout" element={<Checkout />} />
@@ -17,4 +17,3 @@ function App() {
 }
 
 export default App;
- 
