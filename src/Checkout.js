@@ -1,4 +1,3 @@
-import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useRef, useState } from 'react';
 import axios from 'axios';
@@ -11,7 +10,6 @@ export default function Checkout() {
     //   "password": "83r5^_"
 
     const navigate = useNavigate();
-
     const username = useRef();
     const password = useRef();
 
@@ -19,13 +17,13 @@ export default function Checkout() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const email = username.current.value;
+        const user = username.current.value;
         const pass = password.current.value;
         axios({
             method: 'POST',
             url: 'https://fakestoreapi.com/auth/login',
             data: {
-                username: email,
+                username: user,
                 password: pass
             }
         })
@@ -53,7 +51,7 @@ export default function Checkout() {
                     <span className="cursor-pointer text-gray-500 font-normal text-base ml-2.5" onClick={() => navigate('/')}>Back</span>
 
                 </p>
-                <h3 className="font-semibold text-gray-800 text-4xl mt-2" onClick={() => console.log(cartItems)}>Checkout</h3>
+                <h3 className="font-semibold text-gray-800 text-4xl mt-2">Checkout</h3>
 
                 <div className="mt-7 lg:mt-20">
                     <p className="font-normal text-sm text-gray-600 mb-3">Your details</p>
@@ -63,11 +61,11 @@ export default function Checkout() {
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-10">
                             <input aria-label="emailAddress"
                                 className="border-b-2 border-gray-300 pb-3 text-base text-gray-600 font-normal placeholder-gray-600 focus:outline-none"
-                                type="email" placeholder="mor_2314" ref={username} />
+                                type="email" placeholder="Username" ref={username} />
 
                             <input aria-label="password"
                                 className="border-b-2 border-gray-300 pb-3 text-base text-gray-600 font-normal placeholder-gray-600 focus:outline-none"
-                                type="password" placeholder="83r5^_" ref={password} />
+                                type="password" placeholder="Password" ref={password} />
 
                             <input aria-label='credit-card-number'
                                 className="border-b-2 border-gray-300 pb-3 text-base text-gray-600 font-normal placeholder-gray-600 focus:outline-none"
@@ -88,9 +86,7 @@ export default function Checkout() {
                 {
                     error && <p className="text-red-500 text-sm mt-2">Invalid email or password</p>
                 }
-                <button
-                    className="bg-gray-800 hover:bg-gray-900 text-white p-4 text-lg my-3 mt-10 w-full md:w-auto" onClick={handleSubmit}>Pay now
-                </button>
+                <button className="bg-gray-800 hover:bg-gray-900 text-white p-4 text-lg my-3 mt-10 w-full md:w-auto" onClick={handleSubmit}>Pay now</button>
             </div>
             <div
                 className="relative col-span-9 lg:col-span-4 xl:col-span-3 bg-gray-100 lg:h-auto xl:h-screen px-8 py-14 xl:px-12 xl:py-20">
