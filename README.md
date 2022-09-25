@@ -2,7 +2,7 @@
 
 <div align="center">
   <img src="https://i.ibb.co/18NYgrv/Screenshot-2022-09-25-at-13-54-21-React-App.png">
-  <h3><a href="https://renatoka.github.io/netflix-clone/">DEMO</a></h3>
+  <h3><a href="https://renatoka.github.io/fake-store-react/">DEMO</a></h3>
 </div>
 
 ### Dependencies
