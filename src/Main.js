@@ -116,7 +116,7 @@ export default function Main() {
                               +
                             </button>
                           </div>
-                          <p className="text-sm text-gray-800 font-medium md:ml-4 ml-0">€ {(item.price).toFixed(2)}</p>
+                          <p className="text-sm text-gray-800 font-medium md:ml-4 ml-0">€ {item.price}</p>
                         </div>
                       </div>
                     )
@@ -129,7 +129,7 @@ export default function Main() {
                     <p className="text-4xl font-black leading-9 text-gray-800">Summary</p>
                     <div className="flex items-center justify-between pt-16">
                       <p className="text-base leading-none text-gray-800">Subtotal</p>
-                      <p className="text-base leading-none text-gray-800">€ {(cartTotalAmount).toFixed(2)}</p>
+                      <p className="text-base leading-none text-gray-800">€ {cartTotalAmount}</p>
                     </div>
                     <div className="flex items-center justify-between pt-5">
                       <p className="text-base leading-none text-gray-800">Shipping</p>
