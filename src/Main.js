@@ -61,7 +61,6 @@ export default function Main() {
       products.quantity = 1;
       cartTotal += products.price;
       newCart.push(products);
-
       setCart(newCart);
       setCartTotal(cartTotal);
     }
@@ -74,7 +73,8 @@ export default function Main() {
   useEffect(() => {
     axios({
       method: "GET",
-      url: "https://fakestoreapi.com/products"}).then((response) => {
+      url: "https://fakestoreapi.com/products"
+    }).then((response) => {
       setProducts(response.data);
       setLoading(false);
     });
@@ -101,7 +101,7 @@ export default function Main() {
                       <div className="flex flex-col md:flex-row flex-wrap md:items-center md:justify-between py-4 mt-5" key={index}>
                         <div className="flex items-center">
                           <img src={item.image} alt="product" className="w-20 h-20 object-cover" />
-                          <div className="flex flex-col pl-4" style={{maxWidth: '300px'}}>
+                          <div className="flex flex-col pl-4" style={{ maxWidth: '300px' }}>
                             <p className="text-sm text-gray-800 font-medium">{item.title}</p>
                           </div>
                         </div>
@@ -157,7 +157,7 @@ export default function Main() {
                 <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path>
               </svg>
             </label>
-            <input className="hidden" type="checkbox" id="menu-toggle"/>
+            <input className="hidden" type="checkbox" id="menu-toggle" />
             <div className="hidden md:flex md:items-center md:w-auto w-full order-3 md:order-1" id="menu">
               <nav>
                 <ul className="md:flex items-center justify-between text-base text-gray-700 pt-4 md:pt-0">
@@ -179,7 +179,7 @@ export default function Main() {
               </p>
             </div>
             <div
-              className="order-2 md:order-3 flex items-center"id="nav-content">
+              className="order-2 md:order-3 flex items-center" id="nav-content">
               <p className="inline-block no-underline hover:text-black" onClick={() => navigate("/login")}>
                 <svg className="fill-current hover:text-black" xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 24 24">
                   <circle fill="none" cx="12" cy="7" r="3"></circle>
@@ -187,7 +187,7 @@ export default function Main() {
                 </svg>
               </p>
               <p className="pl-3 inline-block no-underline hover:text-black" onClick={() => setShow(!show)}>
-                <svg className="fill-current hover:text-black" xmlns="http://www.w3.org/2000/svg" width="34"height="34" viewBox="0 0 24 24">
+                <svg className="fill-current hover:text-black" xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 24 24">
                   <path d="M21,7H7.462L5.91,3.586C5.748,3.229,5.392,3,5,3H2v2h2.356L9.09,15.414C9.252,15.771,9.608,16,10,16h8 c0.4,0,0.762-0.238,0.919-0.606l3-7c0.133-0.309,0.101-0.663-0.084-0.944C21.649,7.169,21.336,7,21,7z M17.341,14h-6.697L8.371,9 h11.112L17.341,14z"></path>
                   <circle cx="10.5" cy="18.5" r="1.5"></circle>
                   <circle cx="17.5" cy="18.5" r="1.5"></circle>
@@ -199,7 +199,7 @@ export default function Main() {
         </nav>
         <div
           className="hero w-full mx-auto bg-nordic-gray-light flex pt-12 md:pt-0 md:items-center bg-cover bg-right"
-          style={{height: "32rem", backgroundImage:"url(https://images.unsplash.com/photo-1422190441165-ec2956dc9ecc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1600&q=80"}}>
+          style={{ height: "32rem", backgroundImage: "url(https://images.unsplash.com/photo-1422190441165-ec2956dc9ecc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1600&q=80" }}>
           <div className="container mx-auto">
             <div className="flex flex-col w-full lg:w-1/2 justify-center items-start  px-6 tracking-wide">
               <h1 className="text-left text-black text-4xl my-4">
@@ -224,10 +224,10 @@ export default function Main() {
               return (
                 <div className="w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col" key={index}>
                   <div>
-                    <img className="hover:grow hover:shadow-lg" src={product.image} alt={product.description} style={{ width: "300px", height: "300px" }}/>
+                    <img className="hover:grow hover:shadow-lg" src={product.image} alt={product.description} style={{ width: "300px", height: "300px" }} />
                     <div className="pt-3 flex items-center justify-between">
                       <p className="uppercase font-bold text-lg text-left">{product.title}</p>
-                      <img src={plus} width="20px" onClick={() => addToCart(products[index])} alt={product.description}/>
+                      <img src={plus} width="20px" onClick={() => addToCart(products[index])} alt={product.description} />
                     </div>
                     <p className="pt-1 text-left text-gray-900">€ {products[index].price}</p>
                   </div>
@@ -236,6 +236,12 @@ export default function Main() {
             })}
           </div>
         </div>
+        <footer className='text-center pb-5'>
+          <p>
+            Made with 🤍 by
+            <a href="https://github.com/renatoka" target="_blank" rel="noreferrer"> Renatoka</a>
+          </p>
+        </footer>
       </div>
     </>
   );
