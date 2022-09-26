@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 
 import { cartItems, cartTotalAmount } from './Main';
 
-
 export default function OrderSummary() {
 
   const navigate = useNavigate();
@@ -27,19 +26,13 @@ export default function OrderSummary() {
     }
   }
 
-  const getTodaysDate = () => {
+  useEffect(() => {
     const date = new Date();
     const day = date.getDate();
     const month = date.getMonth() + 1;
     const year = date.getFullYear();
     const todaysDate = `Date: ${day}/${month}/${year}`;
     setTodaysDate(todaysDate)
-    console.log(cartTotalAmount)
-    console.log(cartItems)
-  }
-
-  useEffect(() => {
-    getTodaysDate()
   }, [])
 
   return (
@@ -70,8 +63,8 @@ export default function OrderSummary() {
                           € {item.price}
                         </p>
                         <p className="text-base xl:text-lg leading-6 text-gray-800">{item.quantity}x</p>
-                        <p className="text-base xl:text-lg font-semibold leading-6 text-gray-800">€ {item.quantity * item.price}</p>
-                        
+                        <p className="text-base xl:text-lg font-semibold leading-6 text-gray-800">€ {(item.quantity * item.price).toFixed(2)}</p>
+
                       </div>
                     </div>
                   </div>

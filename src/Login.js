@@ -1,8 +1,6 @@
 import { useNavigate } from 'react-router-dom';
-import { useRef, useState, useEffect } from 'react';
+import { useRef, useState } from 'react';
 import axios from 'axios';
-
-import { cartItems, cartTotalAmount } from './Main';
 
 export default function Login() {
 
@@ -29,7 +27,6 @@ export default function Login() {
         })
             .then(() => {
                 navigate('/order-summary')
-                console.log('Cart Items: ', cartItems, 'Cart Total: ', cartTotalAmount);
             }
             )
             .catch((error) => {
@@ -39,7 +36,7 @@ export default function Login() {
             }
             )
     }
-    
+
     return (
         <div className="lg:container lg:mx-auto grid grid-cols-9 lg:grid-cols-12">
             <div
@@ -75,7 +72,7 @@ export default function Login() {
                 {
                     error && <p className="text-red-500 text-sm mt-2">Invalid email or password</p>
                 }
-                <button className="bg-gray-800 hover:bg-gray-900 text-white p-4 text-lg my-3 mt-10 w-full md:w-auto" onClick={handleSubmit}>Login</button>
+                <button className="bg-gray-800 hover:bg-gray-900 text-white p-4 text-lg my-3 mt-10 w-full md:w-auto" onClick={handleSubmit}>Login to confirm payment</button>
             </div>
             {/* <div
                 className="relative col-span-9 lg:col-span-4 xl:col-span-3 bg-gray-100 lg:h-auto xl:h-screen px-8 py-14 xl:px-12 xl:py-20">
