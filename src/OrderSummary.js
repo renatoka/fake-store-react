@@ -120,9 +120,6 @@ export default function OrderSummary() {
                   <p className="w-48 lg:w-full xl:w-48 text-center md:text-left text-sm leading-5 text-gray-600">+1 413-587-0001</p>
                 </div>
               </div>
-              <div className="flex w-full justify-center items-center md:justify-start md:items-start">
-                <button className="mt-6 md:mt-0 py-5 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 border border-gray-800 font-medium w-96 2xl:w-full text-base leading-4 text-gray-800">Edit Details</button>
-              </div>
             </div>
           </div>
         </div>
