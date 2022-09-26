@@ -1,8 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
 import { cartItems, cartTotalAmount } from './Main';
-
 
 export default function OrderSummary() {
 
@@ -47,7 +45,6 @@ export default function OrderSummary() {
                         </p>
                         <p className="text-base xl:text-lg leading-6 text-gray-800">{item.quantity}x</p>
                         <p className="text-base xl:text-lg font-semibold leading-6 text-gray-800">€ {(item.quantity * item.price).toFixed(2)}</p>
-
                       </div>
                     </div>
                   </div>
@@ -82,8 +79,7 @@ export default function OrderSummary() {
                     <img className="w-full h-full" alt="logo" src="https://i.ibb.co/L8KSdNQ/image-3.png" />
                   </div>
                   <div className="flex flex-col justify-start items-center">
-                    <p className="text-lg leading-6 font-semibold text-gray-800">
-                      DPD Delivery
+                    <p className="text-lg leading-6 font-semibold text-gray-800">DPD Delivery
                       <br />
                       <span className="font-normal">Delivery with 24 Hours</span>
                     </p>
@@ -91,7 +87,9 @@ export default function OrderSummary() {
                 </div>
               </div>
               <div className="w-full flex justify-center items-center">
-                <button className="hover:bg-black focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 py-5 w-96 md:w-full bg-gray-800 text-base font-medium leading-4 text-white">View Carrier Details</button>
+                <button className="hover:bg-black focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 py-5 w-96 md:w-full bg-gray-800 text-base font-medium leading-4 text-white">
+                  View Carrier Details
+                </button>
               </div>
             </div>
           </div>
