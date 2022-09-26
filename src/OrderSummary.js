@@ -1,30 +1,13 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { cartItems, cartTotalAmount } from './Main';
+
 
 export default function OrderSummary() {
 
   const navigate = useNavigate();
   const [todaysDate, setTodaysDate] = useState('');
-  const discountValue = useRef();
-
-  const [discountMessage, setDiscountMessage] = useState('');
-  const [discountApplied, setDiscountApplied] = useState(false);
-  const [discountName, setDiscountName] = useState('');
-
-  const handleDiscount = (e) => {
-    e.preventDefault()
-    if (discountValue.current.value.toLowerCase() === 'student') {
-      setDiscountMessage('Discount applied.')
-      setDiscountApplied(true);
-      setDiscountName(discountValue.current.value)
-
-    } else {
-      setDiscountMessage('Invalid discount code. Please try again.')
-      setDiscountApplied(false);
-    }
-  }
 
   useEffect(() => {
     const date = new Date();
@@ -81,20 +64,6 @@ export default function OrderSummary() {
                   <p className="text-base leading-4 text-gray-800">Subtotal</p>
                   <p className="text-base leading-4 text-gray-600">€ {cartTotalAmount.toFixed(2)}</p>
                 </div>
-                {
-                  <>
-                    {
-                      discountApplied ? (
-                        <div className="flex justify-between items-center w-full">
-                          <p className="text-base leading-4 text-gray-800">Discount <span className="bg-gray-200 p-1 text-xs font-medium leading-3 text-gray-800">{discountName.toUpperCase()}</span></p>
-                          <p className="text-base leading-4 text-gray-600"><span className="text-green-500 text-xs font-medium">(15%)</span> € {(cartTotalAmount * 0.15).toFixed(2)}</p>
-                        </div>
-                      ) : (
-                        <></>
-                      )
-                    }
-                  </>
-                }
                 <div className="flex justify-between items-center w-full">
                   <p className="text-base leading-4 text-gray-800">Shipping</p>
                   <p className="text-base leading-4 text-gray-600">€ 5.00</p>
@@ -102,25 +71,9 @@ export default function OrderSummary() {
               </div>
               <div className="flex justify-between items-center w-full">
                 <p className="text-base font-semibold leading-4 text-gray-800">Total</p>
-                {
-                  discountApplied ? (
-                    <p className="text-base font-semibold leading-4 text-gray-800">€ {(cartTotalAmount - (cartTotalAmount * 0.15) + 5).toFixed(2)}</p>
-                  ) : (
-                    <p className="text-base font-semibold leading-4 text-gray-800">€ {(cartTotalAmount + 5).toFixed(2)}</p>
-                  )
-                }
+                <p className="text-base font-semibold leading-4 text-gray-800">€ {(cartTotalAmount + 5).toFixed(2)}</p>
               </div>
               <button className="bg-gray-800 text-white px-4 py-2 rounded-md text-base font-medium">Pay now</button>
-            </div>
-            <div className="px-4 py-6 md:p-6 xl:p-8 w-full bg-gray-50 space-y-6">
-              <h3 className="text-xl font-semibold leading-5 text-gray-800">Got a discount code?</h3>
-              <div className="flex items-center w-full gap-5">
-                <input type="text" className="w-full border border-gray-200 rounded-md px-4 py-2 text-base leading-4 text-gray-800" placeholder="Enter your code" ref={discountValue} />
-              </div>
-              <button className="bg-gray-800 text-white px-4 py-2 rounded-md text-base font-medium w-full" onClick={handleDiscount}>Apply</button>
-              {
-                discountMessage && <p className="text-md font-semibold text-gray-800">{discountMessage}</p>
-              }
             </div>
             <div className="px-4 py-6 md:p-6 xl:p-8 w-full bg-gray-50 space-y-6">
               <h3 className="text-xl font-semibold leading-5 text-gray-800">Shipping</h3>
