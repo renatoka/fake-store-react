@@ -73,7 +73,6 @@ export default function OrderSummary() {
                 <p className="text-base font-semibold leading-4 text-gray-800">Total</p>
                 <p className="text-base font-semibold leading-4 text-gray-800">€ {(cartTotalAmount + 5).toFixed(2)}</p>
               </div>
-              <button className="bg-gray-800 text-white px-4 py-2 rounded-md text-base font-medium">Pay now</button>
             </div>
             <div className="px-4 py-6 md:p-6 xl:p-8 w-full bg-gray-50 space-y-6">
               <h3 className="text-xl font-semibold leading-5 text-gray-800">Shipping</h3>
